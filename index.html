@@ -11,11 +11,11 @@
     <header>
     <div style="width:100%;background-color:DarkCyan;height:20px;padding-top:5px;color:black;"><center>IoletsgoBIOS Setup Utility</center></div>
     <div style="width:100%;background-color:Darkblue;height:20px;color:gray;padding-top:5px">
-    <input id="main" type="radio" name="bios_select" checked onclick="Main()"><span><label for="main">Main</label></span></input>
-    <input id="advanced" type="radio" name="bios_select"><span><label for="advanced" onclick="Advanced()">Advanced</label></span></input>
-    <input id="security" type="radio" name="bios_select"><span><label for=security onclick="Security()">Security</label></span></input>
-    <input id="boot" type="radio" name="bios_select"><span><label for="boot" onclick="Boot()">Boot</label></span></input>
-    <input id="exit" type="radio" name="bios_select"><span><label for="exit" onclick="Exit()">Exit</label></span></input>
+    <input id="main" type="radio" name="bios_select" checked onclick="SwitchTab('Main')"><span><label for="main">Main</label></span></input>
+    <input id="advanced" type="radio" name="bios_select"><span><label for="advanced" onclick="SwitchTab('Advanced')">Advanced</label></span></input>
+    <input id="security" type="radio" name="bios_select"><span><label for=security onclick="SwitchTab('Security')">Security</label></span></input>
+    <input id="boot" type="radio" name="bios_select"><span><label for="boot" onclick="SwitchTab('Boot')">Boot</label></span></input>
+    <input id="exit" type="radio" name="bios_select"><span><label for="exit" onclick="SwitchTab('Exit')">Exit</label></span></input>
     </div>
     </header>
     <main>
@@ -88,6 +88,34 @@ may cause your system to malfunction.</center>
 <span>[Auto]</span>
 </pre>
 </div>
+</div>
+    <div id="Security" class="main" style="display:none;">
+<div class="side">
+<pre>
+Supervisor Password Is:
+User Password Is:
+
+Set User Password
+Set Supervisor Password
+
+Password on boot:
+</pre>
+</div>
+<pre>
+Clear
+Clear
+
+<span>[Enter]</span>
+<span>[Enter]</span>
+
+<span>[Disabled]</span>
+</pre>
+</pre>
+</div>
+    <div id="Boot" class="main" style="display:none;">
+    </div>
+    <div id="Exit" class="main" style="display:none;">
+    </div>
 <div class="side">
 <p><center>Item Specific Help</center></p>
 <hr>
@@ -110,40 +138,13 @@ If you are interested in using contributing to this, or using it as a template f
   </body>
 
   <script>
-function Main() {
-document.getElementById("Main").style.display = "block";
-document.getElementById("Advanced").style.display = "none";
-document.getElementById("Security").style.display = "none";
-document.getElementById("Boot").style.display = "none";
-document.getElementById("Exit").style.display = "none";
-}
-function Advanced() {
-document.getElementById("Main").style.display = "none";
-document.getElementById("Advanced").style.display = "block";
-document.getElementById("Security").style.display = "none";
-document.getElementById("Boot").style.display = "none";
-document.getElementById("Exit").style.display = "none";
-}
-function Security() {
-document.getElementById("Main").style.display = "none";
-document.getElementById("Advanced").style.display = "none";
-document.getElementById("Security").style.display = "block";
-document.getElementById("Boot").style.display = "none";
-document.getElementById("Exit").style.display = "none";
-}
-function Boot() {
-document.getElementById("Main").style.display = "none";
-document.getElementById("Advanced").style.display = "none";
-document.getElementById("Security").style.display = "none";
-document.getElementById("Boot").style.display = "block";
-document.getElementById("Exit").style.display = "none";
-}
-function Exit() {
-document.getElementById("Main").style.display = "none";
-document.getElementById("Advanced").style.display = "none";
-document.getElementById("Security").style.display = "none";
-document.getElementById("Boot").style.display = "none";
-document.getElementById("Exit").style.display = "block";
+tabs = ["Main", "Advanced", "Security", "Boot", "Exit"]
+function SwitchTab(show) {
+    console.log(show)
+    for (let tab in tabs) {
+        document.getElementById(tabs[tab]).style.display = "none";
+    }
+    document.getElementById(show).style.display = "block";
 }
 var date = new Date();
 var n = date.toDateString();
